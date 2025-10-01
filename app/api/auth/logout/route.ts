@@ -30,6 +30,14 @@ export async function POST(request: NextRequest) {
 
     const accessToken = authHeader.substring(7);
 
+    if (accessToken.startsWith("mock_access_token_")) {
+      const mockResponse: LogoutResponse = {
+        success: true,
+        message: "ออกจากระบบสำเร็จ",
+      };
+      return NextResponse.json(mockResponse, { status: 200 });
+    }
+
     const logoutData: LogoutRequest = {
       refreshToken: body.refreshToken,
     };
