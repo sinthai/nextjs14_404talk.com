@@ -22,33 +22,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (validationResult.data.email === "admin@404talk.com" && validationResult.data.password === "1234") {
-      const now = new Date();
-      const accessTokenExpiry = new Date(now.getTime() + 3600000);
-      const refreshTokenExpiry = new Date(now.getTime() + 7 * 24 * 3600000);
-
-      const mockResponse: LoginResponse = {
-        success: true,
-        message: "เข้าสู่ระบบสำเร็จ",
-        token: {
-          accessToken: "mock_access_token_" + Date.now(),
-          refreshToken: "mock_refresh_token_" + Date.now(),
-          accessTokenExpiry: accessTokenExpiry.toISOString(),
-          refreshTokenExpiry: refreshTokenExpiry.toISOString(),
-          tokenType: "Bearer",
-        },
-        user: {
-          id: "admin-001",
-          email: "admin@404talk.com",
-          displayName: "Admin 404Talk",
-          firstName: "Admin",
-          lastName: "404Talk",
-          isActive: true,
-        },
-      };
-      return NextResponse.json(mockResponse, { status: 200 });
-    }
-
     const loginData: LoginRequest = {
       email: validationResult.data.email,
       password: validationResult.data.password,

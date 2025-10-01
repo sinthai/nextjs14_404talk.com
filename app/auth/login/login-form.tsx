@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { Eye, EyeOff, Loader as Loader2, CircleAlert as AlertCircle } from "lucide-react";
+import { Eye, EyeOff, Loader as Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -17,7 +17,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { loginSchema } from "@/lib/validations/login";
 import { bffClient } from "@/lib/api/bff-client";
@@ -28,7 +27,6 @@ export function LoginForm() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string[]>([]);
 
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -41,7 +39,6 @@ export function LoginForm() {
 
   const onSubmit = async (data: LoginFormData) => {
     setIsSubmitting(true);
-    setSubmitError([]);
 
     try {
       const response = await bffClient.post<LoginResponse>("/auth/login", data);
@@ -56,13 +53,19 @@ export function LoginForm() {
           router.refresh();
         }, 500);
       } else {
-        setSubmitError(response.errors || ["เกิดข้อผิดพลาดในการเข้าสู่ระบบ"]);
+        toast.error("เข้าสู่ระบบไม่สำเร็จ", {
+          description: response.errors?.[0] || response.message || "กรุณาตรวจสอบข้อมูลและลองใหม่อีกครั้ง",
+        });
       }
     } catch (error) {
       if (error instanceof Error) {
-        setSubmitError([error.message]);
+        toast.error("เกิดข้อผิดพลาด", {
+          description: error.message,
+        });
       } else {
-        setSubmitError(["เกิดข้อผิดพลาดในการเข้าสู่ระบบ"]);
+        toast.error("เกิดข้อผิดพลาด", {
+          description: "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้",
+        });
       }
     } finally {
       setIsSubmitting(false);
@@ -72,19 +75,6 @@ export function LoginForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        {submitError.length > 0 && (
-          <Alert variant="destructive">
-            <AlertCircle className="h-4 w-4" />
-            <AlertDescription>
-              <ul className="list-inside list-disc space-y-1">
-                {submitError.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            </AlertDescription>
-          </Alert>
-        )}
-
         <FormField
           control={form.control}
           name="email"
