@@ -41,12 +41,13 @@ class BFFClient {
         ...fetchOptions,
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+        return data;
       }
 
-      return await response.json();
+      return data;
     } catch (error) {
       if (error instanceof Error) {
         throw error;

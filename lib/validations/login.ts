@@ -5,7 +5,7 @@ export const loginSchema = z.object({
     .string({
       required_error: "อีเมลเป็นข้อมูลที่จำเป็น",
     })
-    .email("รูปแบบอีเมลไม่ถูกต้อง"),
+    .min(1, "อีเมลเป็นข้อมูลที่จำเป็น"),
   password: z
     .string({
       required_error: "รหัสผ่านเป็นข้อมูลที่จำเป็น",
