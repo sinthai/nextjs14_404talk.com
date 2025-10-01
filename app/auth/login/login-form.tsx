@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { toast } from "sonner";
 import { loginSchema } from "@/lib/validations/login";
 import { bffClient } from "@/lib/api/bff-client";
 import { TokenManager } from "@/lib/auth/token-manager";
@@ -47,8 +48,13 @@ export function LoginForm() {
 
       if (response.success && response.token && response.user) {
         TokenManager.setTokens(response.token, response.user);
-        router.push("/");
-        router.refresh();
+        toast.success("เข้าสู่ระบบสำเร็จ!", {
+          description: `ยินดีต้อนรับกลับมา ${response.user.displayName}`,
+        });
+        setTimeout(() => {
+          router.push("/");
+          router.refresh();
+        }, 500);
       } else {
         setSubmitError(response.errors || ["เกิดข้อผิดพลาดในการเข้าสู่ระบบ"]);
       }

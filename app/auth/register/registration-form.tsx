@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { toast } from "sonner";
 import { registrationSchema } from "@/lib/validations/registration";
 import { bffClient } from "@/lib/api/bff-client";
 import type {
@@ -59,6 +60,9 @@ export function RegistrationForm() {
 
       if (response.success) {
         setSubmitSuccess(true);
+        toast.success("ยินดีต้อนรับ! สมัครสมาชิกเรียบร้อยแล้ว", {
+          description: "กำลังนำคุณไปหน้าเข้าสู่ระบบ",
+        });
         setTimeout(() => {
           router.push("/auth/login");
         }, 2000);

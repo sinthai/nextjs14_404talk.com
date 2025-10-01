@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { TokenManager } from "@/lib/auth/token-manager";
+import { toast } from "sonner";
 import { bffClient } from "@/lib/api/bff-client";
 import type { LogoutResponse } from "@/types/auth/registration";
 
@@ -58,7 +59,12 @@ export function Header({ onMenuClick }: HeaderProps) {
         TokenManager.clearTokens();
         setIsAuthenticated(false);
         setUserData(null);
-        router.push("/auth/login");
+        toast.info("ออกจากระบบเรียบร้อย", {
+          description: "แล้วพบกันใหม่ รักษาสุขภาพด้วยนะ",
+        });
+        setTimeout(() => {
+          router.push("/auth/login");
+        }, 500);
         return;
       }
 
@@ -75,13 +81,23 @@ export function Header({ onMenuClick }: HeaderProps) {
       TokenManager.clearTokens();
       setIsAuthenticated(false);
       setUserData(null);
-      router.push("/auth/login");
-      router.refresh();
+      toast.info("ออกจากระบบเรียบร้อย", {
+        description: "แล้วพบกันใหม่ รักษาสุขภาพด้วยนะ",
+      });
+      setTimeout(() => {
+        router.push("/auth/login");
+        router.refresh();
+      }, 500);
     } catch (error) {
       TokenManager.clearTokens();
       setIsAuthenticated(false);
       setUserData(null);
-      router.push("/auth/login");
+      toast.info("ออกจากระบบเรียบร้อย", {
+        description: "แล้วพบกันใหม่ รักษาสุขภาพด้วยนะ",
+      });
+      setTimeout(() => {
+        router.push("/auth/login");
+      }, 500);
     } finally {
       setIsLoggingOut(false);
     }
