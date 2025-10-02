@@ -69,4 +69,14 @@ export const TokenManager = {
     const token = this.getAccessToken();
     return token !== null && !this.isTokenExpired();
   },
+
+  getUserRole(): string | null {
+    const userData = this.getUserData();
+    return userData?.role || null;
+  },
+
+  isAdmin(): boolean {
+    const role = this.getUserRole();
+    return role === "admin";
+  },
 };

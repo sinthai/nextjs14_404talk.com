@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Search, Plus, Bell, MessageSquare, Sun, Moon, Menu, User, Bookmark, Settings, LogOut, Loader as Loader2 } from "lucide-react";
+import { Search, Plus, Bell, MessageSquare, Sun, Moon, Menu, User, Bookmark, Settings, LogOut, Loader as Loader2, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -30,7 +30,7 @@ export function Header({ onMenuClick }: HeaderProps) {
   const { theme, setTheme } = useTheme();
   const [hasNotifications] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userData, setUserData] = useState<{ displayName: string } | null>(null);
+  const [userData, setUserData] = useState<{ displayName: string; role: string } | null>(null);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export function Header({ onMenuClick }: HeaderProps) {
       if (authenticated) {
         const user = TokenManager.getUserData();
         if (user) {
-          setUserData({ displayName: user.displayName });
+          setUserData({ displayName: user.displayName, role: user.role });
         }
       }
     };
@@ -201,6 +201,14 @@ export function Header({ onMenuClick }: HeaderProps) {
                   </div>
                 )}
                 <DropdownMenuSeparator />
+                {userData?.role === "admin" && (
+                  <DropdownMenuItem asChild>
+                    <Link href="/admin/dashboard" className="flex cursor-pointer items-center">
+                      <LayoutDashboard className="mr-2 h-4 w-4" />
+                      <span>Admin Dashboard</span>
+                    </Link>
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuItem asChild>
                   <Link href="/profile" className="flex cursor-pointer items-center">
                     <User className="mr-2 h-4 w-4" />

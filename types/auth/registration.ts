@@ -47,6 +47,7 @@ export interface UserData {
   firstName?: string;
   lastName?: string;
   isActive: boolean;
+  role: string;
 }
 
 export interface LoginResponse {
