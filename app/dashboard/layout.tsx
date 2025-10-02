@@ -13,7 +13,10 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen">
-      <DashboardHeader onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)} />
+      <DashboardHeader
+        onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        notificationCount={2}
+      />
 
       <div className="flex">
         <DashboardSidebar
