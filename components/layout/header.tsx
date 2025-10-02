@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Search, Plus, Bell, MessageSquare, Sun, Moon, Menu, User, Bookmark, Settings, LogOut, Loader as Loader2 } from "lucide-react";
@@ -26,6 +26,7 @@ interface HeaderProps {
 
 export function Header({ onMenuClick }: HeaderProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [hasNotifications] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -235,10 +236,18 @@ export function Header({ onMenuClick }: HeaderProps) {
             </DropdownMenu>
           ) : (
             <div className="flex items-center gap-2">
-              <Button variant="ghost" asChild size="sm">
+              <Button
+                variant={pathname === "/auth/login" ? "default" : "ghost"}
+                asChild
+                size="sm"
+              >
                 <Link href="/auth/login">เข้าสู่ระบบ</Link>
               </Button>
-              <Button asChild size="sm">
+              <Button
+                variant={pathname === "/auth/register" ? "default" : "outline"}
+                asChild
+                size="sm"
+              >
                 <Link href="/auth/register">สมัครสมาชิก</Link>
               </Button>
             </div>
