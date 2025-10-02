@@ -28,7 +28,7 @@ import {
   type CreateCommunityFormData,
 } from "@/lib/validations/community";
 import { toast } from "sonner";
-import { Globe, Lock, Users, MessageSquare, FileText, AlertCircle, ArrowLeft } from "lucide-react";
+import { Globe, Lock, Users, MessageSquare, FileText, CircleAlert as AlertCircle, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export default function CreateCommunityPage() {
