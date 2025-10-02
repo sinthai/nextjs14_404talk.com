@@ -18,7 +18,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Search, Plus, MoreHorizontal, Edit, Trash2, Eye, ThumbsUp, MessageCircle, Pin } from "lucide-react";
+import { Search, Plus, MoveHorizontal as MoreHorizontal, CreditCard as Edit, Trash2, Eye, ThumbsUp, MessageCircle, Pin } from "lucide-react";
 import { mockUserThreads } from "@/lib/user-dashboard/mock-data";
 import type { UserThread } from "@/types/user-dashboard";
 import { format } from "date-fns";

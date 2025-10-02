@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Bell, MessageCircle, ThumbsUp, UserPlus, AlertCircle, Reply, CheckCheck } from "lucide-react";
+import { Bell, MessageCircle, ThumbsUp, UserPlus, CircleAlert as AlertCircle, Reply, CheckCheck } from "lucide-react";
 import { mockNotifications } from "@/lib/user-dashboard/mock-data";
 import type { Notification } from "@/types/user-dashboard";
 import { formatDistanceToNow } from "date-fns";

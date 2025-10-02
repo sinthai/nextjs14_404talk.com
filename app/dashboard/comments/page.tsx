@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Search, MoreHorizontal, Edit, Trash2, Eye, ThumbsUp, Reply } from "lucide-react";
+import { Search, MoveHorizontal as MoreHorizontal, CreditCard as Edit, Trash2, Eye, ThumbsUp, Reply } from "lucide-react";
 import { mockUserComments } from "@/lib/user-dashboard/mock-data";
 import type { UserComment } from "@/types/user-dashboard";
 import { format } from "date-fns";
