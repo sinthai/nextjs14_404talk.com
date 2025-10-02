@@ -1,6 +1,6 @@
 "use client";
 
-import { Users, FileText, MessageSquare, FolderTree, TrendingUp, AlertCircle } from "lucide-react";
+import { Users, FileText, MessageSquare, FolderTree, TrendingUp, CircleAlert as AlertCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { StatCard } from "@/components/admin/stat-card";
 import {

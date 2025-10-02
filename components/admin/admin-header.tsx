@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import { Menu, Sun, Moon, Bell, LogOut, Loader2 } from "lucide-react";
+import { Menu, Sun, Moon, Bell, LogOut, Loader as Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,

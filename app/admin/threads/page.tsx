@@ -1,17 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Search,
-  MoreHorizontal,
-  Eye,
-  Edit,
-  Trash2,
-  Pin,
-  Lock,
-  Unlock,
-  PinOff,
-} from "lucide-react";
+import { Search, MoveHorizontal as MoreHorizontal, Eye, CreditCard as Edit, Trash2, Pin, Lock, Clock as Unlock, PinOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Search, MoreHorizontal, Eye, UserCog, Ban, CheckCircle } from "lucide-react";
+import { Search, MoveHorizontal as MoreHorizontal, Eye, UserCog, Ban, CircleCheck as CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
