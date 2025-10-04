@@ -1,13 +1,14 @@
 export interface Category {
-  id: string;
+  id: number;
   name: string;
   slug: string;
   description?: string;
-  icon?: string;
+  imageUrl?: string;
   color?: string;
+  isActive: boolean;
+  sortOrder: number;
   postCount: number;
   createdAt: string;
-  updatedAt: string;
 }
 
 export interface User {
@@ -99,6 +100,15 @@ export interface PaginationParams {
   search?: string;
 }
 
+export interface Pagination {
+  currentPage: number;
+  pageSize: number;
+  totalItems: number;
+  totalPages: number;
+  hasNext: boolean;
+  hasPrevious: boolean;
+}
+
 export interface PaginatedResponse<T> {
   data: T[];
   pagination: {
@@ -107,4 +117,27 @@ export interface PaginatedResponse<T> {
     totalItems: number;
     totalPages: number;
   };
+}
+
+export interface CategoryListParams {
+  page?: number;
+  pageSize?: number;
+  search?: string;
+  isActive?: boolean;
+  sortBy?: 'name' | 'sortOrder' | 'createdAt' | 'postCount';
+  sortOrder?: 'asc' | 'desc';
+}
+
+export interface CategoryListResponse {
+  success: boolean;
+  data: {
+    items: Category[];
+    pagination: Pagination;
+  };
+}
+
+export interface ApiErrorResponse {
+  success: false;
+  message: string;
+  errors?: string[];
 }
